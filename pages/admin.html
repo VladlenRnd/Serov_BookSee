@@ -1,0 +1,199 @@
+﻿
+  <div class="page contact-us">
+
+      <div class="yolo-site">
+          <header class="header yolo-header-style-10">
+
+              <div class="mobile-menu">
+                  <div class="col-3 text-center">
+                      <div class="logo">
+                          <h1><a href="index.html"><img src="images/logo/logo.png" alt="logo" /></a></h1>
+                      </div>
+                  </div>
+              </div>
+              <div class="header-logo">
+                  <h1><a href="index.html"><img src="images/logo/logo.png" alt="logo" /></a></h1>
+              </div>
+              <div class="header-bottom">
+                  <div class="container">
+                      <div class="main-nav-wrapper">
+                          <div class="header-left">
+                              <nav id="primary-menu" class="main-nav">
+                                  <ul class="nav">
+
+                                      <!--<li class="menu-item menu-blog">
+                                          <a href="#">Контакты</a>
+                                          <ul class="sub-menu">
+                                              <li><a href="/about-us">О нашем магазине</a></li>
+                                              <li><a href="/contact-us">Контакты с нами</a></li>
+                                          </ul>
+                                      </li>-->
+                                  </ul>
+                              </nav>
+                              <!-- .header-main-nav-->
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+          </header>
+
+          <div id="example-wrapper">
+              <div class="div-box">
+                  <div class="banner-subpage">
+                      <figure><img src="images/img/bg-banner2.png" alt="bg-banner" /></figure>
+                      <div class="banner-subpage-content">
+                          <h2 style="text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; ">Коморка администратора</h2>
+                          <div class="desc">
+                              <p style="text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;">АДМИН</p>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+              <div class="div-box support-contact mb">
+                  <div class="support-contact-content mb mt">
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-md-4 col-sm-4">
+                                  <h2 class="text-center mb-45">Товаров в базе</h2>
+                                  <p><strong>Всего</strong> {{Boocks.length}} шт.</p>
+                                  <p ng-repeat="cat in Boocks|unique: 'Genre'"><strong>{{cat.Genre}}</strong> {{CountLenght(cat.Genre)}} шт.</p>
+                              </div>
+
+                              <div style="max-height:550px; overflow:auto" class="col-md-4 col-sm-4 text-center">
+                                  <h2 class="mb-45">Заказы</h2>
+                                  <table class="table table-hover">
+                                      <thead>
+                                          <tr>
+                                              <th>#</th>
+                                              <th>Имя</th>
+                                              <th>Фамилия</th>
+                                              <th>Номер телефона</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr ng-click="CheckOrder('123')" style="cursor:pointer">
+                                              <th scope="row">1</th>
+                                              <td>Mark</td>
+                                              <td>Otto</td>
+                                              <td>@mdo</td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4">
+                                  <h2 class="mb-45 text-center">Промокоды</h2>
+                                  <table class="table table-hover">
+                                      <thead>
+                                          <tr>
+                                              <th>#</th>
+                                              <th>Код</th>
+                                              <th>Удалить</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr>
+                                              <th scope="row">1</th>
+                                              <td>24947562342</td>
+                                              <td>
+                                                  <button ng-click="DeletePromo('123')" type="button" class="btn btn-default btn-sm">
+                                                      <span class="	fa fa-remove"></span> Удалить
+                                                  </button>
+                                              </td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+              <!--admin panel-->
+              <div class="div-box get-in-touch mb">
+        <div class="container">
+            <div class="get-in-touch text-center">
+                <h2 class="mb-45">Товары</h2>
+                <p class="mb-45"><i>Добавить новый товар</i></p>
+            </div>
+            <form enctype="multipart/form-data" method="post" ng-submit="CreateProduct()"  class="get-in-touch-form">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p>
+                            <input type="text" placeholder="Название" />
+                        </p>
+                        <p>
+                            <input type="text" placeholder="Автор" />
+                        </p>
+                        <p>
+                            <input type="number" min="0" max="99999" placeholder="Цена" />
+                        </p>
+                        <p>
+                            <input type="text" placeholder="Жанр" />
+                        </p>
+                        <p>
+                            <input type="number" value="0" max="99" min="0" placeholder="Скидка" />
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>
+                            <label><input type="checkbox" checked="checked" value="value"> Наличие на складе</label>
+                        </p>
+                        <p>
+                            <label> Обложка</label>
+                            <input accept="image/*" type="file">
+                        </p>
+                       
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            <textarea cols="30" rows="14" placeholder="Описание книги"></textarea>
+                        </p>
+                    </div>
+                </div>
+                <p class="text-right"><button type="submit" class="btn btn-17">Добавить товар</button></p>
+            </form>
+        </div>
+    </div>
+
+
+
+              <div class="div-box">
+                  <footer id="yolo-footer-wrapper">
+                      <div class="yolo-footer-wrapper footer-3">
+                          <div class="footer-col">
+                              <h2><a href="index.html" class="logo"><img src="images/logo/logo-footer.png" alt="logo1" width="84" height="63" class="vc_single_image-img attachment-full" /></a></h2>
+                              <ul id="social-footer">
+                                  <!--<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+                              </ul>
+                              <p class="copyright">BookSee © Plexa 2017 Copyright, Все права защищены  <a href="#">BookSee</a></p>
+                          </div>
+                      </div>
+                  </footer>
+              </div>
+          </div>
+      </div>
+    <!-- .mv-site-->
+    
+    
+
+    <div class="popup-wrapper">
+    </div>
+    <!-- .popup-wrapper-->
+    <div class="click-back-top-body">
+      <button type="button" class="sn-btn sn-btn-style-17 sn-back-to-top fixed-right-bottom"><i class="btn-icon fa fa-angle-up"></i></button>
+    </div>
+
+    <!-- Vendor jQuery-->
+
+  </div>

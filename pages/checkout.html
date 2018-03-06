@@ -1,0 +1,630 @@
+﻿
+<div class="product check-out">
+    <div class="yolo-site">
+        <header class="header yolo-header-style-10">
+
+            <div class="yolo-top-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="top-sidebar top-bar-left col-md-4">
+                            <aside id="text-11" class="widget widget_text">
+                                <div class="textwidget">
+                                    <div>Добро пожаловать на BookSee.ru</div>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="top-sidebar top-bar-right col-md-8">
+                            <aside id="text-6" class="widget widget_text">
+                                <div class="textwidget"><i class="fa fa-home"></i> 101 Карла Маркса, Днепр <i style="margin-left: 15px" class="fa fa-phone"></i> +8-800-555-35-35<i style="margin-left: 15px" class="fa fa-clock-o"></i> Пон - Пт : 9.00 - 20:00</div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mobile-menu">
+                <div class="col-3 text-left"><a href="#primary-menu"><i class="fa fa-bars"></i></a></div>
+                <div class="col-3 text-center">
+                    <div class="logo">
+                        <h1><a href="index.html"><img src="images/logo/logo.png" alt="logo" /></a></h1>
+                    </div>
+                </div>
+                <div class="col-3 text-right">
+                    <div class="header-right">
+
+                        <div class="icon-search-menu"><a href="/index.html"><i style="font-size:30px;" class="wicon fa fa-home"></i></a></div>
+
+                        <div class="shopping-cart-wrapper header-customize-item with-price">
+                            <div class="widget_shopping_cart_content">
+                                <div ng-click="GoTo('/Cart')" class="widget_shopping_cart_icon"><i class="wicon fa fa-shopping-bag"></i><span class="total">{{CartElemnts.length}}</span></div>
+
+                                <div class="cart_list_wrapper">
+                                    <div class="scroll-wrapper cart_list product_list_widget scrollbar-inner">
+                                        <ul class="cart_list product_list_widget scrollbar-inner scroll-content">
+
+                                            <li ng-show="CartElemnts.length === 0" class="empty">
+                                                <h4>Корзина пустая</h4>
+                                                <p>Вы не добавили ни одной книги для покупки</p>
+                                            </li>
+
+                                            <li style="padding-bottom:5px; padding-top:5px; border-bottom:1px solid rgba(128, 128, 128, 0.70);" ng-repeat="Book in CartElemnts track by $index" class="row">
+                                                <div class="col-md-3"><img ng-src="{{Book.Img === '' ? 'images/ProductImg/noImgBook.jpg' : Book.Img}}" alt="product1" width="50" height="70" class="attachment-shop_catalog size-shop_catalog wp-post-image" /></div>
+                                                <div style="word-wrap: break-word" class="col-md-4"><h4>{{Book.Name}}</h4></div>
+                                                <div class="col-md-3"><input ng-change="PlusInp(Book)" type="number" style="width:50px" ng-model="Book.Count" min="1"></div>
+                                                <div class="col-md-1"><a ng-click="DeleteInCart($index)" style="cursor:pointer"><i class="fa fa-times"></i></a></div>
+
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="header-logo">
+                <h1><a href="index.html"><img src="images/logo/logo.png" alt="logo" /></a></h1>
+            </div>
+            <div class="header-bottom">
+                <div class="container">
+                    <div class="main-nav-wrapper">
+                        <div class="header-left">
+                            <nav id="primary-menu" class="main-nav">
+                                <ul class="nav">
+
+                                    <li class="menu-item menu-blog">
+                                        <a href="#">Контакты</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="/about-us">О нашем магазине</a></li>
+                                            <li><a href="/contact-us">Контакты с нами</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- .header-main-nav-->
+                        </div>
+                        <div class="header-right">
+
+                            <div class="icon-search-menu"><a href="/index.html"><i style="font-size:19px;" class="wicon fa fa-home"></i></a></div>
+
+
+                            <div class="shopping-cart-wrapper header-customize-item with-price">
+                                <div class="widget_shopping_cart_content">
+
+                                    <div ng-click="GoTo('/Cart')" class="widget_shopping_cart_icon"><i class="wicon fa fa-shopping-bag"></i><span class="total">{{CartElemnts.length}}</span></div>
+                                    <div class="cart_list_wrapper">
+                                        <div class="scroll-wrapper cart_list product_list_widget scrollbar-inner">
+                                            <ul class="cart_list product_list_widget scrollbar-inner scroll-content">
+
+                                                <li ng-show="CartElemnts.length === 0" class="empty">
+                                                    <h4>Корзина пустая</h4>
+                                                    <p>Вы не добавили ни одной книги для покупки</p>
+                                                </li>
+
+                                                <li style="padding-bottom:5px; padding-top:5px; border-bottom:1px solid rgba(128, 128, 128, 0.70);" ng-repeat="Book in CartElemnts track by $index" class="row">
+                                                    <div class="col-md-3"><img ng-src="{{Book.Img === '' ? 'images/ProductImg/noImgBook.jpg' : Book.Img}}" alt="product1" width="50" height="70" class="attachment-shop_catalog size-shop_catalog wp-post-image" /></div>
+                                                    <div style="word-wrap: break-word" class="col-md-4"><h4>{{Book.Name}}</h4></div>
+                                                    <div class="col-md-3"><input ng-change="PlusInp(Book)" type="number" style="width:50px" ng-model="Book.Count" min="1"></div>
+                                                    <div class="col-md-1"><a ng-click="DeleteInCart($index)" style="cursor:pointer"><i class="fa fa-times"></i></a></div>
+
+                                                </li>
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+        <div id="example-wrapper">
+            <div class="div-box">
+                <div class="banner-subpage">
+                    <figure><img src="images/img/bg-banner2.png" alt="bg-banner" /></figure>
+                    <div class="banner-subpage-content">
+                        <h2 style="text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; ">Коллекция книг всего мира</h2>
+                        <div class="desc">
+                            <p style="text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;">Оформление заказа</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="div-box mb mt">
+                <div class="container">
+
+
+                    <!--<div class="form-customers">
+                        <h3 class="check-out-title">Returning customers?</h3>
+                        <div class="product-begreen-checkout-info">
+                            Returning customer?
+                            <div class="showlogin">Click here to login</div>
+                        </div>
+                        <form class="login">
+                            <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
+                            <p>
+                                <label>Username or email <span class="required">*</span></label>
+                                <input id="username" name="username" type="text" />
+                            </p>
+                            <p>
+                                <label>Password   <span class="required">*</span></label>
+                                <input id="password" name="password" type="password" />
+                            </p>
+                            <div class="clear"></div>
+                            <p>
+                                <input name="login" value="Login" type="submit" class="button" />
+                                <label class="inline">
+                                    <input id="rememberme" name="rememberme" value="forever" type="checkbox" /> Remember me
+                                </label>
+                            </p>
+                            <p class="lost_password"><a href="#">Lost your password?</a></p>
+                            <div class="clear"></div>
+                        </form>
+                        <div class="product-begreen-checkout-info">
+                            Have a coupon?
+                            <div class="showcoupon">Click here to enter your code</div>
+                        </div>
+                        <form class="checkout_coupon">
+                            <input type="text" />
+                            <p class="mt-20"><a href="#" class="btn">Apply Coupon</a></p>
+                        </form>
+                    </div>-->
+
+
+
+                    <form class="checkout">
+                        <div id="customer_details" class="col2-set row">
+                            <div class="col-1 col-md-6">
+                                <div class="product-begreen-billing-fields">
+                                    <h3>Главная информация</h3>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p>
+                                                <label>Имя <abbr title="required" class="required">*</abbr></label>
+                                                <input type="text" />
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>
+                                                <label>Фамилия <abbr title="required" class="required">*</abbr></label>
+                                                <input id="billing_last_name" name="billing_last_name" placeholder="" autocomplete="family-name" value="" type="text" />
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p>
+                                                <label>Email <abbr title="required" class="required">*</abbr></label>
+                                                <input type="email" />
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>
+                                                <label>Номер телефона <abbr title="required" class="required">*</abbr></label>
+                                                <input type="tel" />
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--<p>
+                                        <label>Country <abbr title="required" class="required">*</abbr></label>
+                                        <select id="billing_country" class="country_to_state country_select">
+                                            <option value="">Select a country…</option>
+                                            <option value="AX">Åland Islands</option>
+                                            <option value="AF">Afghanistan</option>
+                                            <option value="AL">Albania</option>
+                                            <option value="DZ">Algeria</option>
+                                            <option value="AS">American Samoa</option>
+                                            <option value="AD">Andorra</option>
+                                            <option value="AO">Angola</option>
+                                            <option value="AI">Anguilla</option>
+                                            <option value="AQ">Antarctica</option>
+                                            <option value="AG">Antigua and Barbuda</option>
+                                            <option value="AR">Argentina</option>
+                                            <option value="AM">Armenia</option>
+                                            <option value="AW">Aruba</option>
+                                            <option value="AU">Australia</option>
+                                            <option value="AT">Austria</option>
+                                            <option value="AZ">Azerbaijan</option>
+                                            <option value="BS">Bahamas</option>
+                                            <option value="BH">Bahrain</option>
+                                            <option value="BD">Bangladesh</option>
+                                            <option value="BB">Barbados</option>
+                                            <option value="BY">Belarus</option>
+                                            <option value="PW">Belau</option>
+                                            <option value="BE">Belgium</option>
+                                            <option value="BZ">Belize</option>
+                                            <option value="BJ">Benin</option>
+                                            <option value="BM">Bermuda</option>
+                                            <option value="BT">Bhutan</option>
+                                            <option value="BO">Bolivia</option>
+                                            <option value="BQ">Bonaire, Saint Eustatius and Saba</option>
+                                            <option value="BA">Bosnia and Herzegovina</option>
+                                            <option value="BW">Botswana</option>
+                                            <option value="BV">Bouvet Island</option>
+                                            <option value="BR">Brazil</option>
+                                            <option value="IO">British Indian Ocean Territory</option>
+                                            <option value="VG">British Virgin Islands</option>
+                                            <option value="BN">Brunei</option>
+                                            <option value="BG">Bulgaria</option>
+                                            <option value="BF">Burkina Faso</option>
+                                            <option value="BI">Burundi</option>
+                                            <option value="KH">Cambodia</option>
+                                            <option value="CM">Cameroon</option>
+                                            <option value="CA">Canada</option>
+                                            <option value="CV">Cape Verde</option>
+                                            <option value="KY">Cayman Islands</option>
+                                            <option value="CF">Central African Republic</option>
+                                            <option value="TD">Chad</option>
+                                            <option value="CL">Chile</option>
+                                            <option value="CN">China</option>
+                                            <option value="CX">Christmas Island</option>
+                                            <option value="CC">Cocos (Keeling) Islands</option>
+                                            <option value="CO">Colombia</option>
+                                            <option value="KM">Comoros</option>
+                                            <option value="CG">Congo (Brazzaville)</option>
+                                            <option value="CD">Congo (Kinshasa)</option>
+                                            <option value="CK">Cook Islands</option>
+                                            <option value="CR">Costa Rica</option>
+                                            <option value="HR">Croatia</option>
+                                            <option value="CU">Cuba</option>
+                                            <option value="CW">Curaçao</option>
+                                            <option value="CY">Cyprus</option>
+                                            <option value="CZ">Czech Republic</option>
+                                            <option value="DK">Denmark</option>
+                                            <option value="DJ">Djibouti</option>
+                                            <option value="DM">Dominica</option>
+                                            <option value="DO">Dominican Republic</option>
+                                            <option value="EC">Ecuador</option>
+                                            <option value="EG">Egypt</option>
+                                            <option value="SV">El Salvador</option>
+                                            <option value="GQ">Equatorial Guinea</option>
+                                            <option value="ER">Eritrea</option>
+                                            <option value="EE">Estonia</option>
+                                            <option value="ET">Ethiopia</option>
+                                            <option value="FK">Falkland Islands</option>
+                                            <option value="FO">Faroe Islands</option>
+                                            <option value="FJ">Fiji</option>
+                                            <option value="FI">Finland</option>
+                                            <option value="FR">France</option>
+                                            <option value="GF">French Guiana</option>
+                                            <option value="PF">French Polynesia</option>
+                                            <option value="TF">French Southern Territories</option>
+                                            <option value="GA">Gabon</option>
+                                            <option value="GM">Gambia</option>
+                                            <option value="GE">Georgia</option>
+                                            <option value="DE">Germany</option>
+                                            <option value="GH">Ghana</option>
+                                            <option value="GI">Gibraltar</option>
+                                            <option value="GR">Greece</option>
+                                            <option value="GL">Greenland</option>
+                                            <option value="GD">Grenada</option>
+                                            <option value="GP">Guadeloupe</option>
+                                            <option value="GU">Guam</option>
+                                            <option value="GT">Guatemala</option>
+                                            <option value="GG">Guernsey</option>
+                                            <option value="GN">Guinea</option>
+                                            <option value="GW">Guinea-Bissau</option>
+                                            <option value="GY">Guyana</option>
+                                            <option value="HT">Haiti</option>
+                                            <option value="HM">Heard Island and McDonald Islands</option>
+                                            <option value="HN">Honduras</option>
+                                            <option value="HK">Hong Kong</option>
+                                            <option value="HU">Hungary</option>
+                                            <option value="IS">Iceland</option>
+                                            <option value="IN">India</option>
+                                            <option value="ID">Indonesia</option>
+                                            <option value="IR">Iran</option>
+                                            <option value="IQ">Iraq</option>
+                                            <option value="IM">Isle of Man</option>
+                                            <option value="IL">Israel</option>
+                                            <option value="IT">Italy</option>
+                                            <option value="CI">Ivory Coast</option>
+                                            <option value="JM">Jamaica</option>
+                                            <option value="JP">Japan</option>
+                                            <option value="JE">Jersey</option>
+                                            <option value="JO">Jordan</option>
+                                            <option value="KZ">Kazakhstan</option>
+                                            <option value="KE">Kenya</option>
+                                            <option value="KI">Kiribati</option>
+                                            <option value="KW">Kuwait</option>
+                                            <option value="KG">Kyrgyzstan</option>
+                                            <option value="LA">Laos</option>
+                                            <option value="LV">Latvia</option>
+                                            <option value="LB">Lebanon</option>
+                                            <option value="LS">Lesotho</option>
+                                            <option value="LR">Liberia</option>
+                                            <option value="LY">Libya</option>
+                                            <option value="LI">Liechtenstein</option>
+                                            <option value="LT">Lithuania</option>
+                                            <option value="LU">Luxembourg</option>
+                                            <option value="MO">Macao S.A.R., China</option>
+                                            <option value="MK">Macedonia</option>
+                                            <option value="MG">Madagascar</option>
+                                            <option value="MW">Malawi</option>
+                                            <option value="MY">Malaysia</option>
+                                            <option value="MV">Maldives</option>
+                                            <option value="ML">Mali</option>
+                                            <option value="MT">Malta</option>
+                                            <option value="MH">Marshall Islands</option>
+                                            <option value="MQ">Martinique</option>
+                                            <option value="MR">Mauritania</option>
+                                            <option value="MU">Mauritius</option>
+                                            <option value="YT">Mayotte</option>
+                                            <option value="MX">Mexico</option>
+                                            <option value="FM">Micronesia</option>
+                                            <option value="MD">Moldova</option>
+                                            <option value="MC">Monaco</option>
+                                            <option value="MN">Mongolia</option>
+                                            <option value="ME">Montenegro</option>
+                                            <option value="MS">Montserrat</option>
+                                            <option value="MA">Morocco</option>
+                                            <option value="MZ">Mozambique</option>
+                                            <option value="MM">Myanmar</option>
+                                            <option value="NA">Namibia</option>
+                                            <option value="NR">Nauru</option>
+                                            <option value="NP">Nepal</option>
+                                            <option value="NL">Netherlands</option>
+                                            <option value="NC">New Caledonia</option>
+                                            <option value="NZ">New Zealand</option>
+                                            <option value="NI">Nicaragua</option>
+                                            <option value="NE">Niger</option>
+                                            <option value="NG">Nigeria</option>
+                                            <option value="NU">Niue</option>
+                                            <option value="NF">Norfolk Island</option>
+                                            <option value="KP">North Korea</option>
+                                            <option value="MP">Northern Mariana Islands</option>
+                                            <option value="NO">Norway</option>
+                                            <option value="OM">Oman</option>
+                                            <option value="PK">Pakistan</option>
+                                            <option value="PS">Palestinian Territory</option>
+                                            <option value="PA">Panama</option>
+                                            <option value="PG">Papua New Guinea</option>
+                                            <option value="PY">Paraguay</option>
+                                            <option value="PE">Peru</option>
+                                            <option value="PH">Philippines</option>
+                                            <option value="PN">Pitcairn</option>
+                                            <option value="PL">Poland</option>
+                                            <option value="PT">Portugal</option>
+                                            <option value="PR">Puerto Rico</option>
+                                            <option value="QA">Qatar</option>
+                                            <option value="IE">Republic of Ireland</option>
+                                            <option value="RE">Reunion</option>
+                                            <option value="RO">Romania</option>
+                                            <option value="RU">Russia</option>
+                                            <option value="RW">Rwanda</option>
+                                            <option value="ST">São Tomé and Príncipe</option>
+                                            <option value="BL">Saint Barthélemy</option>
+                                            <option value="SH">Saint Helena</option>
+                                            <option value="KN">Saint Kitts and Nevis</option>
+                                            <option value="LC">Saint Lucia</option>
+                                            <option value="SX">Saint Martin (Dutch part)</option>
+                                            <option value="MF">Saint Martin (French part)</option>
+                                            <option value="PM">Saint Pierre and Miquelon</option>
+                                            <option value="VC">Saint Vincent and the Grenadines</option>
+                                            <option value="WS">Samoa</option>
+                                            <option value="SM">San Marino</option>
+                                            <option value="SA">Saudi Arabia</option>
+                                            <option value="SN">Senegal</option>
+                                            <option value="RS">Serbia</option>
+                                            <option value="SC">Seychelles</option>
+                                            <option value="SL">Sierra Leone</option>
+                                            <option value="SG">Singapore</option>
+                                            <option value="SK">Slovakia</option>
+                                            <option value="SI">Slovenia</option>
+                                            <option value="SB">Solomon Islands</option>
+                                            <option value="SO">Somalia</option>
+                                            <option value="ZA">South Africa</option>
+                                            <option value="GS">South Georgia/Sandwich Islands</option>
+                                            <option value="KR">South Korea</option>
+                                            <option value="SS">South Sudan</option>
+                                            <option value="ES">Spain</option>
+                                            <option value="LK">Sri Lanka</option>
+                                            <option value="SD">Sudan</option>
+                                            <option value="SR">Suriname</option>
+                                            <option value="SJ">Svalbard and Jan Mayen</option>
+                                            <option value="SZ">Swaziland</option>
+                                            <option value="SE">Sweden</option>
+                                            <option value="CH">Switzerland</option>
+                                            <option value="SY">Syria</option>
+                                            <option value="TW">Taiwan</option>
+                                            <option value="TJ">Tajikistan</option>
+                                            <option value="TZ">Tanzania</option>
+                                            <option value="TH">Thailand</option>
+                                            <option value="TL">Timor-Leste</option>
+                                            <option value="TG">Togo</option>
+                                            <option value="TK">Tokelau</option>
+                                            <option value="TO">Tonga</option>
+                                            <option value="TT">Trinidad and Tobago</option>
+                                            <option value="TN">Tunisia</option>
+                                            <option value="TR">Turkey</option>
+                                            <option value="TM">Turkmenistan</option>
+                                            <option value="TC">Turks and Caicos Islands</option>
+                                            <option value="TV">Tuvalu</option>
+                                            <option value="UG">Uganda</option>
+                                            <option value="UA">Ukraine</option>
+                                            <option value="AE">United Arab Emirates</option>
+                                            <option value="GB">United Kingdom (UK)</option>
+                                            <option value="US">United States (US)</option>
+                                            <option value="UM">United States (US) Minor Outlying Islands</option>
+                                            <option value="VI">United States (US) Virgin Islands</option>
+                                            <option value="UY">Uruguay</option>
+                                            <option value="UZ">Uzbekistan</option>
+                                            <option value="VU">Vanuatu</option>
+                                            <option value="VA">Vatican</option>
+                                            <option value="VE">Venezuela</option>
+                                            <option value="VN" selected="selected">Vietnam</option>
+                                            <option value="WF">Wallis and Futuna</option>
+                                            <option value="EH">Western Sahara</option>
+                                            <option value="YE">Yemen</option>
+                                            <option value="ZM">Zambia</option>
+                                            <option value="ZW">Zimbabwe</option>
+                                        </select>
+                                    </p>-->
+                                    <p>
+                                        <label>Адрес <abbr title="required" class="required">*</abbr></label>
+                                        <input type="text" />
+                                    </p>
+                                    <p>
+                                        <input id="billing_address_2" name="billing_address_2" placeholder="Номер отделения почты" autocomplete="address-line2" value="" type="text" />
+                                    </p>
+                                    <p>
+                                        <label>Город <abbr title="required" class="required">*</abbr></label>
+                                        <input type="text" />
+                                    </p>
+                                    <div class="row">
+                                        <!--<div class="col-md-6">
+                                            <p>
+                                                <label>State / County</label>
+                                                <input type="text" />
+                                            </p>
+                                        </div>-->
+                                        <div class="col-md-6">
+                                            <p>
+                                                <label>Индекс</label>
+                                                <input type="text" />
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--<p class="create-account product-begreen-validated">
+                                        <input id="createaccount" type="checkbox" />
+                                        <label class="checkbox">Create an account?</label>
+                                    </p>-->
+                                    <!--<div class="create-account">
+                                        <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
+                                        <p>
+                                            <label>Account password <abbr title="required" class="required">*</abbr></label>
+                                            <input type="password" />
+                                        </p>
+                                        <div class="clear"></div>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="col-2 col-md-6">
+                                <div class="product-begreen-shipping-fields">
+                                    <h3>Дополнительная информация</h3>
+                                    <p id="order_comments_field" class="notes product-begreen-validated">
+                                        <label>Заметки</label>
+                                        <textarea id="order_comments" name="order_comments" placeholder="Заметки о вашем заказе, например. особые замечания для доставки." rows="6" cols="5"></textarea>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 id="order_review_heading">Ваш заказ</h3>
+                        <div id="order_review" class="product-begreen-checkout-review-order">
+                            <table class="shop_table product-begreen-checkout-review-order-table">
+                                <thead>
+                                    <tr>
+                                        <th class="product-name">Книга</th>
+                                        <th class="product-total">Цена</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="bk in CartElemnts" class="cart_item">
+                                        <td class="product-name">{{bk.Name}} <strong class="product-quantity">× {{bk.Count}}</strong></td>
+                                        <td class="product-total"><span class="product-begreen-price-amount amount"><span class="product-begreen-price-currencysymbol">₴</span>{{GetCurrentPrice(bk.Prise,bk.Discount) * bk.Count}}</span></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="order-total">
+                                        <th>К оплате</th>
+                                        <td><strong><span class="product-begreen-price-amount amount"><span class="product-begreen-price-currencysymbol">₴</span>{{totalCart()}}</span></strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <div id="payment" class="product-begreen-checkout-payment">
+                                <!--<ul class="wc_payment_methods payment_methods methods">
+                                    <li class="payment_method_cheque">
+                                        <div class="payment_box_title active">
+                                            <input id="payment_method_cheque" name="payment_method" value="cheque" checked="checked" data-order_button_text="" type="radio" class="input-radio" />
+                                            <label>Check Payments</label>
+                                        </div>
+                                        <div class="payment_box payment_method_cheque">
+                                            <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                                        </div>
+                                    </li>
+                                    <li class="payment_method_paypal">
+                                        <div class="payment_box_title">
+                                            <input id="payment_method_paypal" name="payment_method" value="paypal" data-order_button_text="Proceed to PayPal" type="radio" class="input-radio" />
+                                            <label>PayPal <img src="images/demo/pay.png" alt="PayPal Acceptance Mark" /><a href="#" title="What is PayPal?" class="about_paypal">What is PayPal?</a></label>
+                                        </div>
+                                        <div class="payment_box payment_method_paypal">
+                                            <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                                        </div>
+                                    </li>
+                                </ul>-->
+                                <div class="place-order mt-20">
+                                    <button id="place_order" type="submit" ng-click="Bay()" class="button alt">Заказать</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="div-box">
+                <footer id="yolo-footer-wrapper">
+                    <div class="yolo-footer-wrapper footer-3">
+                        <div class="footer-col">
+                            <h2><a href="index.html" class="logo"><img src="images/logo/logo-footer.png" alt="logo1" width="84" height="63" class="vc_single_image-img attachment-full" /></a></h2>
+                            <ul id="social-footer">
+                                <!--<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+                            </ul>
+                            <p class="copyright">BookSee © Plexa 2017 Copyright, Все права защищены  <a href="#">BookSee</a></p>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!-- .mv-site-->
+    <!-- Modal -->
+    <div class="modal fade" id="BeyModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Заказ оформлен</h4>
+                </div>
+                <div class="modal-body">
+                    <ul style="text-align:center">
+                        <li><h4>Благодарим за заказ</h4><br /></li>
+                        <li><p>В Ближайшее время с вами свяжется оператор для водтверждения заказа</p></li>
+                        <li><a style="cursor:pointer" ng-click="GoTo('/index')">На главную</a></li>
+                    </ul>
+
+                    
+              
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="popup-wrapper">
+    </div>
+    <!-- .popup-wrapper-->
+    <div class="click-back-top-body">
+        <button type="button" class="sn-btn sn-btn-style-17 sn-back-to-top fixed-right-bottom"><i class="btn-icon fa fa-angle-up"></i></button>
+    </div>
+</div>

@@ -1,0 +1,353 @@
+﻿ <div class="products products-grid-4-columns">
+    <div class="yolo-site">
+        <header class="header yolo-header-style-10">
+
+            <div class="yolo-top-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="top-sidebar top-bar-left col-md-4">
+                            <aside id="text-11" class="widget widget_text">
+                                <div class="textwidget">
+                                    <div>Добро пожаловать на BookSee.ru</div>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="top-sidebar top-bar-right col-md-8">
+                            <aside id="text-6" class="widget widget_text">
+                                <div class="textwidget"><i class="fa fa-home"></i> 101 Карла Маркса, Днепр <i style="margin-left: 15px" class="fa fa-phone"></i> +8-800-555-35-35<i style="margin-left: 15px" class="fa fa-clock-o"></i> Пон - Пт : 9.00 - 20:00</div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mobile-menu">
+                <div class="col-3 text-left"><a href="#primary-menu"><i class="fa fa-bars"></i></a></div>
+                <div class="col-3 text-center">
+                    <div class="logo">
+                        <h1><a href="index.html"><img src="images/logo/logo.png" alt="logo" /></a></h1>
+                    </div>
+                </div>
+                <div class="col-3 text-right">
+                    <div class="header-right">
+
+                        <div class="icon-search-menu"><a href="/index.html"><i style="font-size:30px;" class="wicon fa fa-home"></i></a></div>
+
+                        <div class="shopping-cart-wrapper header-customize-item with-price">
+                            <div class="widget_shopping_cart_content">
+                                <div ng-click="GoTo('/Cart')" class="widget_shopping_cart_icon"><i class="wicon fa fa-shopping-bag"></i><span class="total">{{CartElemnts.length}}</span></div>
+
+                                <div class="cart_list_wrapper">
+                                    <div class="scroll-wrapper cart_list product_list_widget scrollbar-inner">
+                                        <ul class="cart_list product_list_widget scrollbar-inner scroll-content">
+
+                                            <li ng-show="CartElemnts.length === 0" class="empty">
+                                                <h4>Корзина пустая</h4>
+                                                <p>Вы не добавили ни одной книги для покупки</p>
+                                            </li>
+
+                                            <li style="padding-bottom:5px; padding-top:5px; border-bottom:1px solid rgba(128, 128, 128, 0.70);" ng-repeat="Book in CartElemnts track by $index" class="row">
+                                                <div class="col-md-3"><img ng-src="{{Book.Img === '' ? 'images/ProductImg/noImgBook.jpg' : Book.Img}}" alt="product1" width="50" height="70" class="attachment-shop_catalog size-shop_catalog wp-post-image" /></div>
+                                                <div style="word-wrap: break-word" class="col-md-4"><h4>{{Book.Name}}</h4></div>
+                                                <div class="col-md-3"><input ng-change="PlusInp(Book)" type="number" style="width:50px" ng-model="Book.Count" min="1"></div>
+                                                <div class="col-md-1"><a ng-click="DeleteInCart($index)" style="cursor:pointer"><i class="fa fa-times"></i></a></div>
+
+                                            </li>
+
+                                            <li><a href="/Cart" class="process">В Корзину</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="header-logo">
+                <h1><a href="index.html"><img src="images/logo/logo.png" alt="logo" /></a></h1>
+            </div>
+            <div class="header-bottom">
+                <div class="container">
+                    <div class="main-nav-wrapper">
+                        <div class="header-left">
+                            <nav id="primary-menu" class="main-nav">
+                                <ul class="nav">
+                                    <li class="menu-item menu-home">
+                                        <a href="index.html">Коллекция</a>
+
+                                        <ul class="sub-menu">
+                                            <!--Автор-->
+                                            <li class="menu-item">
+                                                <a style="cursor:default!important;" href="#">Автор</a>
+                                                <ul style="max-height:550px; overflow:auto" class="sub-menu">
+                                                    <li class="menu-item"><a ng-click="SelectedFilter('Все','')" ng-class="SelectFilter.SelectAuctor === 'Все' ? 'selectFilterMenu' : ''" href="#">Все</a></li>
+                                                    <li ng-repeat="auc in Boocks|unique: 'Auctor'" class="menu-item"><a ng-click="SelectedFilter(auc.Auctor,'')" ng-class="SelectFilter.SelectAuctor === auc.Auctor ? 'selectFilterMenu' : ''" href="#">{{auc.Auctor}}</a></li>
+                                                </ul>
+                                            </li>
+                                            <!--Жанр-->
+                                            <li class="menu-item">
+                                                <a style="cursor:default!important;" href="#">Жанр</a>
+                                                <ul style="max-height:550px; overflow:auto" class="sub-menu">
+                                                    <li class="menu-item"><a ng-click="SelectedFilter('','Все')" ng-class="SelectFilter.SelectGenre === 'Все' ? 'selectFilterMenu' : ''" href="#">Все</a></li>
+                                                    <li ng-repeat="gnr in Boocks|unique: 'Genre'" class="menu-item"><a ng-click="SelectedFilter('',gnr.Genre)" ng-class="SelectFilter.SelectGenre === gnr.Genre ? 'selectFilterMenu' : ''" href="#">{{gnr.Genre}}</a></li>
+                                                </ul>
+                                            </li>
+                                            <!--Новинки-->
+
+                                            <li class="menu-item">
+                                                <a style="cursor:default!important;" href="#">Новинки</a>
+                                                <ul style="max-height:550px; overflow:auto" class="sub-menu">
+                                                    <li ng-repeat="bks in Boocks | filter:FilterNewTime" class="menu-item"><a ng-click="GoTo('/Product/'+ bks.Id)" href="#">{{bks.Name}}</a></li>
+
+                                                </ul>
+                                            </li>
+
+                                            <!--Акции-->
+                                            <li class="menu-item">
+                                                <a style="cursor:default!important;" href="#">Акции</a>
+                                                <ul style="max-height:550px; overflow:auto" class="sub-menu">
+                                                    <li ng-repeat="bk in Boocks | filter:FilterDiscount" class="menu-item"><a ng-click="GoTo('/Product/'+ bk.Id)" href="#">{{bk.Name}} (-{{bk.Discount}}%)</a></li>
+
+                                                </ul>
+                                            </li>
+
+
+                                        </ul>
+                                    </li>
+
+                                    <!--<li class="mega-menu menu-item">
+                                        <a href="#">Хиты продаж</a>
+                                        <ul class="sub-menu sub-menu-mega">
+                                            <li class="active-menu sub-menu-mega-item sale-off-mega-menu">
+                                                <a href="#">Фантастика</a>
+                                                <ul style="max-height:550px; overflow:auto">
+
+                                                    <li style="width:150px">
+                                                        <a href="#"><img src="images/demo/mega-5.jpg" alt="mg-" width="85" height="100" /></a>
+                                                        <p class="mega-right"><span class="product-title">Hay Flowerpot With Saucer Huset</span><span class="price">$80.00–$100.00</span></p>
+                                                    </li>
+                                                    <li style="width:150px">
+                                                        <a href="#"><img src="images/demo/mega-6.jpg" alt="mg-" width="85" height="100" /></a>
+                                                        <p class="mega-right"><span class="product-title">Cactus Shaped Eraser</span><span class="price">$32.00</span></p>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>-->
+
+                                    <li class="menu-item menu-blog">
+                                        <a href="#">Контакты</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="/about-us">О нашем магазине</a></li>
+                                            <li><a href="/contact-us">Контакты с нами</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- .header-main-nav-->
+                        </div>
+                        <div class="header-right">
+
+                            <div class="icon-search-menu"><a href="/index.html"><i style="font-size:19px;" class="wicon fa fa-home"></i></a></div>
+
+
+                            <div class="shopping-cart-wrapper header-customize-item with-price">
+                                <div class="widget_shopping_cart_content">
+
+                                    <div ng-click="GoTo('/Cart')" class="widget_shopping_cart_icon"><i class="wicon fa fa-shopping-bag"></i><span class="total">{{CartElemnts.length}}</span></div>
+                                    <div  class="cart_list_wrapper">
+                                        <div class="scroll-wrapper cart_list product_list_widget scrollbar-inner">
+                                            <ul class="cart_list product_list_widget scrollbar-inner scroll-content">
+
+                                                <li ng-show="CartElemnts.length === 0" class="empty">
+                                                    <h4>Корзина пустая</h4>
+                                                    <p>Вы не добавили ни одной книги для покупки</p>
+                                                </li>
+
+                                                <li style="padding-bottom:5px; padding-top:5px; border-bottom:1px solid rgba(128, 128, 128, 0.70);" ng-repeat="Book in CartElemnts track by $index" class="row">
+                                                    <div class="col-md-3"><img ng-src="{{Book.Img === '' ? 'images/ProductImg/noImgBook.jpg' : Book.Img}}" alt="product1" width="50" height="70" class="attachment-shop_catalog size-shop_catalog wp-post-image" /></div>
+                                                    <div style="word-wrap: break-word" class="col-md-4"><h4>{{Book.Name}}</h4></div>
+                                                    <div class="col-md-3"><input ng-change="PlusInp(Book)" type="number" style="width:50px" ng-model="Book.Count" min="1"></div>
+                                                    <div class="col-md-1"><a ng-click="DeleteInCart($index)" style="cursor:pointer"><i class="fa fa-times"></i></a></div>
+
+                                                </li>
+
+                                                <li><a href="/Cart" class="process">В Корзину</a></li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+        <div id="example-wrapper">
+            <div class="div-box mb-45">
+                <div class="banner-subpage">
+                    <figure><img src="images/img/bg-banner2.png" alt="bg-banner" /></figure>
+                    <div class="banner-subpage-content">
+                        <h2 style="text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; ">Коллекция книг всего мира</h2>
+                        <div class="desc">
+                            <p style="text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;">Главная</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="div-box mb">
+                <div class="container">
+                    <div data-js-module="filtering-demo" class="big-demo go-wide">
+                        <ul class="grid shortcode-product-wrap product-begreen columns-4">
+                            <li ng-repeat="Book in Boocks" class="element-item {{concatAuthor(Book.Auctor)}} {{Book.Genre}} product-item-wrap product-style_1">
+                                <div class="product-item-inner">
+                                    <div class="product-thumb">
+                                        <div ng-hide="Book.Discount === '0'" class="product-flash-wrap"><span class="on-new product-flash">{{Book.Discount}}%</span></div>
+                                        <div class="product-thumb-primary"><img ng-src="{{Book.Img === '' ? 'images/ProductImg/noImgBook.jpg' : Book.Img}}" alt="product1" width="375" height="450" class="attachment-shop_catalog size-shop_catalog wp-post-image" /></div><a ng-click="GoTo('/Product/'+ Book.Id)" style="cursor:pointer" class="product-link">
+                                            <div class="product-hover-sign">
+                                                <hr />
+                                                <hr />
+                                            </div>
+                                        </a>
+                                        <div class="product-info">
+                                            <div class="star-rating">
+
+                                                
+                                            </div>
+                                            <a href="#">
+                                                <h3>{{Book.Name}}</h3>
+                                            </a>
+
+
+                                            <span ng-hide="Book.Discount === '0'" class="price">
+
+                                                <del>
+                                                    <span class="product-begreen-price-amount amount">
+                                                        <span class="product-begreen-price-currencysymbol">
+                                                            ₴
+                                                        </span>{{Book.Prise}}
+                                                    </span>
+                                                </del>
+                                                <ins>
+                                                    <span class="product-begreen-price-amount amount">
+                                                        <span class="product-begreen-price-currencysymbol">
+                                                            ₴
+                                                        </span>{{GetCurrentPrice(Book.Prise,Book.Discount)}}
+                                                    </span>
+                                                </ins>
+
+                                            </span>
+
+                                            <span ng-hide="Book.Discount !== '0'" class="price">
+                                                <span class="product-begreen-price-amount amount">
+                                                    <span class="product-begreen-price-currencysymbol">
+                                                        ₴
+                                                    </span>{{Book.Prise}}
+                                                </span>
+                                            </span>
+
+
+                                        </div>
+                                        <div class="product-actions">
+                                            <!--<div class="yith-wcwl-add-to-wishlist add-to-wishlist-17">
+                                                <div class="yith-wcwl-add-button show"><a href="#" class="add_to_wishlist"><i class="fa fa-heart-o"></i> Add to Wishlist</a></div>
+                                            </div>-->
+                                            <div ng-show="Book.Availability !== 0" class="add-to-cart-wrap"><a href="#" ng-click="AddToCart(Book)" class="add_to_cart_button"><i class="fa fa-cart-plus"></i> Add to cart</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="div-box">
+                <footer id="yolo-footer-wrapper">
+                    <div class="yolo-footer-wrapper footer-3">
+                        <div class="footer-col">
+                            <h2><a href="index.html" class="logo"><img src="images/logo/logo-footer.png" alt="logo1" width="84" height="63" class="vc_single_image-img attachment-full" /></a></h2>
+                            <ul id="social-footer">
+                                <!--<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+                            </ul>
+                            <p class="copyright">BookSee © Plexa 2017 Copyright, Все права защищены  <a href="#">BookSee</a></p>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+    <!-- .mv-site-->
+
+
+    <div class="popup-wrapper">
+    </div>
+    <!-- .popup-wrapper-->
+    <div class="click-back-top-body">
+        <button type="button" class="sn-btn sn-btn-style-17 sn-back-to-top fixed-right-bottom"><i class="btn-icon fa fa-angle-up"></i></button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="AddToCartModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Товар добавлен в корзину</h4>
+                </div>
+                <div class="modal-body">
+
+
+
+                    <table>
+        <tbody>
+            <tr>
+                <td style="padding-right:15px;" data-title="image"><a href="#"><img ng-src="{{ModalElementCart.Img === '' ? 'images/ProductImg/noImgBook.jpg' : ModalElementCart.Img}}" alt="tab-1" width="180" height="220"></a></td>
+                <td style="padding-right:15px;" data-title="name product"><a href="#" class="product-name">Название: {{ModalElementCart.Name}}</a></td>
+                <td style="padding-right:15px;" data-title="name product"><a href="#" class="product-name">Автор: {{ModalElementCart.Auctor}}</a></td>
+                <td style="padding-right:15px;" data-title="name product"><a href="#" class="product-name">Жанр: {{ModalElementCart.Genre}}</a></td>
+                <td data-title="Unit Price">
+                    <span class="amount">
+                        Цена:
+                        <del ng-show="ModalElementCart.Discount !== '0'">₴{{ModalElementCart.Prise}}</del>
+                        <ins> ₴{{GetCurrentPrice(ModalElementCart.Prise,ModalElementCart.Discount)}}</ins>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,233 @@
+﻿
+  <div class="product cart">
+      <div class="yolo-site">
+
+          <header class="header yolo-header-style-10">
+
+              <div class="yolo-top-bar">
+                  <div class="container">
+                      <div class="row">
+                          <div class="top-sidebar top-bar-left col-md-4">
+                              <aside id="text-11" class="widget widget_text">
+                                  <div class="textwidget">
+                                      <div>Добро пожаловать на BookSee.ru</div>
+                                  </div>
+                              </aside>
+                          </div>
+                          <div class="top-sidebar top-bar-right col-md-8">
+                              <aside id="text-6" class="widget widget_text">
+                                  <div class="textwidget"><i class="fa fa-home"></i> 101 Карла Маркса, Днепр <i style="margin-left: 15px" class="fa fa-phone"></i> +8-800-555-35-35<i style="margin-left: 15px" class="fa fa-clock-o"></i> Пон - Пт : 9.00 - 20:00</div>
+                              </aside>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="mobile-menu">
+                  <div class="col-3 text-left"><a href="#primary-menu"><i class="fa fa-bars"></i></a></div>
+                  <div class="col-3 text-center">
+                      <div class="logo">
+                          <h1><a href="index.html"><img src="images/logo/logo.png" alt="logo" /></a></h1>
+                      </div>
+                  </div>
+                  <div class="col-3 text-right">
+                      <div class="header-right">
+
+                          <div class="icon-search-menu"><a href="/index.html"><i style="font-size:30px;" class="wicon fa fa-home"></i></a></div>
+
+                          <div class="shopping-cart-wrapper header-customize-item with-price">
+                              <div class="widget_shopping_cart_content">
+                                  <div ng-click="GoTo('/Cart')" class="widget_shopping_cart_icon"><i class="wicon fa fa-shopping-bag"></i><span class="total">{{CartElemnts.length}}</span></div>
+
+                                  <div class="cart_list_wrapper">
+                                      <div class="scroll-wrapper cart_list product_list_widget scrollbar-inner">
+                                          <ul class="cart_list product_list_widget scrollbar-inner scroll-content">
+
+                                              <li ng-show="CartElemnts.length === 0" class="empty">
+                                                  <h4>Корзина пустая</h4>
+                                                  <p>Вы не добавили ни одной книги для покупки</p>
+                                              </li>
+
+                                              <li style="padding-bottom:5px; padding-top:5px; border-bottom:1px solid rgba(128, 128, 128, 0.70);" ng-repeat="Book in CartElemnts track by $index" class="row">
+                                                  <div class="col-md-3"><img ng-src="{{Book.Img === '' ? 'images/ProductImg/noImgBook.jpg' : Book.Img}}" alt="product1" width="50" height="70" class="attachment-shop_catalog size-shop_catalog wp-post-image" /></div>
+                                                  <div style="word-wrap: break-word" class="col-md-4"><h4>{{Book.Name}}</h4></div>
+                                                  <div class="col-md-3"><input ng-change="PlusInp(Book)" type="number" style="width:50px" ng-model="Book.Count" min="1"></div>
+                                                  <div class="col-md-1"><a ng-click="DeleteInCart($index)" style="cursor:pointer"><i class="fa fa-times"></i></a></div>
+
+                                              </li>
+
+
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+              <div class="header-logo">
+                  <h1><a href="index.html"><img src="images/logo/logo.png" alt="logo" /></a></h1>
+              </div>
+              <div class="header-bottom">
+                  <div class="container">
+                      <div class="main-nav-wrapper">
+                          <div class="header-left">
+                              <nav id="primary-menu" class="main-nav">
+                                  <ul class="nav">
+
+                                      <li class="menu-item menu-blog">
+                                          <a href="#">Контакты</a>
+                                          <ul class="sub-menu">
+                                              <li><a href="/about-us">О нашем магазине</a></li>
+                                              <li><a href="/contact-us">Контакты с нами</a></li>
+                                          </ul>
+                                      </li>
+                                  </ul>
+                              </nav>
+                              <!-- .header-main-nav-->
+                          </div>
+                          <div class="header-right">
+
+                              <div class="icon-search-menu"><a href="/index.html"><i style="font-size:19px;" class="wicon fa fa-home"></i></a></div>
+
+
+                              <div class="shopping-cart-wrapper header-customize-item with-price">
+                                  <div class="widget_shopping_cart_content">
+
+                                      <div ng-click="GoTo('/Cart')" class="widget_shopping_cart_icon"><i class="wicon fa fa-shopping-bag"></i><span class="total">{{CartElemnts.length}}</span></div>
+                                      <div class="cart_list_wrapper">
+                                          <div class="scroll-wrapper cart_list product_list_widget scrollbar-inner">
+                                              <ul class="cart_list product_list_widget scrollbar-inner scroll-content">
+
+                                                  <li ng-show="CartElemnts.length === 0" class="empty">
+                                                      <h4>Корзина пустая</h4>
+                                                      <p>Вы не добавили ни одной книги для покупки</p>
+                                                  </li>
+
+                                                  <li style="padding-bottom:5px; padding-top:5px; border-bottom:1px solid rgba(128, 128, 128, 0.70);" ng-repeat="Book in CartElemnts track by $index" class="row">
+                                                      <div class="col-md-3"><img ng-src="{{Book.Img === '' ? 'images/ProductImg/noImgBook.jpg' : Book.Img}}" alt="product1" width="50" height="70" class="attachment-shop_catalog size-shop_catalog wp-post-image" /></div>
+                                                      <div style="word-wrap: break-word" class="col-md-4"><h4>{{Book.Name}}</h4></div>
+                                                      <div class="col-md-3"><input  ng-change="PlusInp(Book)" type="number" style="width:50px" ng-model="Book.Count" min="1"></div>
+                                                      <div class="col-md-1"><a ng-click="DeleteInCart($index)" style="cursor:pointer"><i class="fa fa-times"></i></a></div>
+
+                                                  </li>
+
+
+                                              </ul>
+                                          </div>
+                                      </div>
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </header>
+
+
+          <div id="example-wrapper">
+              <div class="div-box">
+                  <div class="banner-subpage">
+                      <figure><img src="images/img/bg-banner2.png" alt="bg-banner" /></figure>
+                      <div class="banner-subpage-content">
+                          <h2 style="text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; ">Коллекция книг всего мира</h2>
+                          <div class="desc">
+                              <p style="text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;">Корзина</p>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="div-box mb mt">
+                  <div class="container">
+                      <form class="cart-form">
+                          <table>
+                              <tr>
+                                  <th>Книга</th>
+                                  <th> </th>
+                                  <th>Цена</th>
+                                  <th>Количество</th>
+                                  <th>Сумма</th>
+                                  <th> </th>
+                              </tr>
+                              <tr ng-repeat="book in CartElemnts track by $index">
+                                  <td data-title="Product"><a href="#" class="image-product"><img ng-src="{{book.Img === '' ? 'images/ProductImg/noImgBook.jpg' : book.Img}}" alt="tab-1" width="180" height="220" /></a></td>
+                                  <td data-title="Name"><a href="#" class="name-product">{{book.Name}}</a></td>
+                                  <td data-title="Price">
+
+
+                                      <del ng-show="book.Discount !== 0">
+                                          <span class="price">₴{{book.Prise}}</span>
+                                      </del>
+                                      <span style="padding-left:5px;" class="price"> ₴{{GetCurrentPrice(book.Prise,book.Discount)}}</span>
+
+
+                                  </td>
+                                  <td data-title="Количество">
+                                      <span class="quanlity">Количество:</span>
+                                      <input type="number" ng-change="PlusInp(Book)" ng-model="book.Count" min="1" />
+                                  </td>
+                                  <td data-title="Total"><span class="total">₴{{GetCurrentPrice(book.Prise,book.Discount) * book.Count}}</span></td>
+                                  <td data-title="Remove"><a ng-click="DeleteInCart($index)" style="cursor:pointer"><i class="fa fa-times"></i></a></td>
+                              </tr>
+                          </table>
+                          <div class="button-cart">
+                              <div class="button-cart-left">
+                                  <input type="text" placeholder="Код Скидки" /><a href="#" class="coupon">Добавить купон</a>
+                              </div>
+                              <div class="button-cart-right"><a ng-click="CartElemnts.length !== 0 ? GoTo('/Checkout'): ''" class="btn btn-17">Сделать заказ</a></div>
+                          </div>
+                      </form>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <form class="cart-total">
+                                  <h4>Сумма покупки</h4>
+                                  <table>
+                                      <!--<tr>
+                                          <td>Полная стоймость</td>
+                                          <td><span class="subtotal">$890.00</span></td>
+                                      </tr>-->
+                                      <tr>
+                                          <td>Сумма</td>
+                                          <td><span class="total">₴{{totalCart()}}</span></td>
+                                      </tr>
+                                  </table>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="div-box">
+                  <footer id="yolo-footer-wrapper">
+                      <div class="yolo-footer-wrapper footer-3">
+                          <div class="footer-col">
+                              <h2><a href="index.html" class="logo"><img src="images/logo/logo-footer.png" alt="logo1" width="84" height="63" class="vc_single_image-img attachment-full" /></a></h2>
+                              <ul id="social-footer">
+                                  <!--<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+                              </ul>
+                              <p class="copyright">BookSee © Plexa 2017 Copyright, Все права защищены  <a href="#">BookSee</a></p>
+                          </div>
+                      </div>
+                  </footer>
+              </div>
+          </div>
+      </div>
+    <!-- .mv-site-->
+    
+    
+
+    <div class="popup-wrapper">
+    </div>
+    <!-- .popup-wrapper-->
+    <div class="click-back-top-body">
+      <button type="button" class="sn-btn sn-btn-style-17 sn-back-to-top fixed-right-bottom"><i class="btn-icon fa fa-angle-up"></i></button>
+    </div>
+  </div>

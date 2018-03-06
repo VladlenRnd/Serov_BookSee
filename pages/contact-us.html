@@ -1,0 +1,304 @@
+﻿
+  <div class="page contact-us">
+
+      <div class="yolo-site">
+          <header class="header yolo-header-style-10">
+
+              <div class="yolo-top-bar">
+                  <div class="container">
+                      <div class="row">
+                          <div class="top-sidebar top-bar-left col-md-4">
+                              <aside id="text-11" class="widget widget_text">
+                                  <div class="textwidget">
+                                      <div>Добро пожаловать на BookSee.ru</div>
+                                  </div>
+                              </aside>
+                          </div>
+                          <div class="top-sidebar top-bar-right col-md-8">
+                              <aside id="text-6" class="widget widget_text">
+                                  <div class="textwidget"><i class="fa fa-home"></i> 101 Карла Маркса, Днепр <i style="margin-left: 15px" class="fa fa-phone"></i> +8-800-555-35-35<i style="margin-left: 15px" class="fa fa-clock-o"></i> Пон - Пт : 9.00 - 20:00</div>
+                              </aside>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="mobile-menu">
+                  <div class="col-3 text-left"><a href="#primary-menu"><i class="fa fa-bars"></i></a></div>
+                  <div class="col-3 text-center">
+                      <div class="logo">
+                          <h1><a href="index.html"><img src="images/logo/logo.png" alt="logo" /></a></h1>
+                      </div>
+                  </div>
+                  <div class="col-3 text-right">
+                      <div class="header-right">
+
+                          <div class="icon-search-menu"><a href="/index.html"><i style="font-size:30px;" class="wicon fa fa-home"></i></a></div>
+
+                          <div class="shopping-cart-wrapper header-customize-item with-price">
+                              <div class="widget_shopping_cart_content">
+                                  <div ng-click="GoTo('/Cart')" class="widget_shopping_cart_icon"><i class="wicon fa fa-shopping-bag"></i><span class="total">{{CartElemnts.length}}</span></div>
+
+                                  <div class="cart_list_wrapper">
+                                      <div class="scroll-wrapper cart_list product_list_widget scrollbar-inner">
+                                          <ul class="cart_list product_list_widget scrollbar-inner scroll-content">
+
+                                              <li ng-show="CartElemnts.length === 0" class="empty">
+                                                  <h4>Корзина пустая</h4>
+                                                  <p>Вы не добавили ни одной книги для покупки</p>
+                                              </li>
+
+                                              <li style="padding-bottom:5px; padding-top:5px; border-bottom:1px solid rgba(128, 128, 128, 0.70);" ng-repeat="Book in CartElemnts track by $index" class="row">
+                                                  <div class="col-md-3"><img ng-src="{{Book.Img === '' ? 'images/ProductImg/noImgBook.jpg' : Book.Img}}" alt="product1" width="50" height="70" class="attachment-shop_catalog size-shop_catalog wp-post-image" /></div>
+                                                  <div style="word-wrap: break-word" class="col-md-4"><h4>{{Book.Name}}</h4></div>
+                                                  <div class="col-md-3"><input ng-change="PlusInp(Book)" type="number" style="width:50px" ng-model="Book.Count" min="1"></div>
+                                                  <div class="col-md-1"><a ng-click="DeleteInCart($index)" style="cursor:pointer"><i class="fa fa-times"></i></a></div>
+
+                                              </li>
+
+
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+              <div class="header-logo">
+                  <h1><a href="index.html"><img src="images/logo/logo.png" alt="logo" /></a></h1>
+              </div>
+              <div class="header-bottom">
+                  <div class="container">
+                      <div class="main-nav-wrapper">
+                          <div class="header-left">
+                              <nav id="primary-menu" class="main-nav">
+                                  <ul class="nav">
+
+                                      <li class="menu-item menu-blog">
+                                          <a href="#">Контакты</a>
+                                          <ul class="sub-menu">
+                                              <li><a href="/about-us">О нашем магазине</a></li>
+                                              <li><a href="/contact-us">Контакты с нами</a></li>
+                                          </ul>
+                                      </li>
+                                  </ul>
+                              </nav>
+                              <!-- .header-main-nav-->
+                          </div>
+                          <div class="header-right">
+
+                              <div class="icon-search-menu"><a href="/index.html"><i style="font-size:19px;" class="wicon fa fa-home"></i></a></div>
+
+
+                              <div class="shopping-cart-wrapper header-customize-item with-price">
+                                  <div class="widget_shopping_cart_content">
+
+                                      <div ng-click="GoTo('/Cart')" class="widget_shopping_cart_icon"><i class="wicon fa fa-shopping-bag"></i><span class="total">{{CartElemnts.length}}</span></div>
+                                      <div class="cart_list_wrapper">
+                                          <div class="scroll-wrapper cart_list product_list_widget scrollbar-inner">
+                                              <ul class="cart_list product_list_widget scrollbar-inner scroll-content">
+
+                                                  <li ng-show="CartElemnts.length === 0" class="empty">
+                                                      <h4>Корзина пустая</h4>
+                                                      <p>Вы не добавили ни одной книги для покупки</p>
+                                                  </li>
+
+                                                  <li style="padding-bottom:5px; padding-top:5px; border-bottom:1px solid rgba(128, 128, 128, 0.70);" ng-repeat="Book in CartElemnts track by $index" class="row">
+                                                      <div class="col-md-3"><img ng-src="{{Book.Img === '' ? 'images/ProductImg/noImgBook.jpg' : Book.Img}}" alt="product1" width="50" height="70" class="attachment-shop_catalog size-shop_catalog wp-post-image" /></div>
+                                                      <div style="word-wrap: break-word" class="col-md-4"><h4>{{Book.Name}}</h4></div>
+                                                      <div class="col-md-3"><input ng-change="PlusInp(Book)" type="number" style="width:50px" ng-model="Book.Count" min="1"></div>
+                                                      <div class="col-md-1"><a ng-click="DeleteInCart($index)" style="cursor:pointer"><i class="fa fa-times"></i></a></div>
+
+                                                  </li>
+
+
+                                              </ul>
+                                          </div>
+                                      </div>
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </header>
+
+          <div id="example-wrapper">
+              <div class="div-box">
+                  <div class="banner-subpage">
+                      <figure><img src="images/img/bg-banner2.png" alt="bg-banner" /></figure>
+                      <div class="banner-subpage-content">
+                          <h2 style="text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; ">Коллекция книг всего мира</h2>
+                          <div class="desc">
+                              <p style="text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;">Контакты с нами</p>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+              <div class="div-box support-contact mb">
+                  <div class="support-contact-content mb mt">
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-md-4 col-sm-4">
+                                  <h2 class="text-center mb-45">Поддержка</h2>
+                                  <div class="row">
+                                      <div class="col-xs-4">
+                                          <figure class="text-center"><img src="images/demo/about-us-page.png" alt="about-us-page" /></figure>
+                                      </div>
+                                      <div class="col-sx-8">
+                                          <p><strong>Елезавета Грибоедова</strong></p>
+                                          <p>Менеджер</p>
+                                          <p> <i class="fa fa-skype color-00A8E8"> </i>Liza817</p>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-4 col-sm-4 text-center">
+                                  <h2 class="mb-45">Соц. сети</h2>
+                                  <div class="social-share-wrap">
+                                      <ul class="social-share">
+                                          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                          <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                          <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
+                                          <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                      </ul>
+                                  </div>
+                              </div>
+                              <div class="col-md-4 col-sm-4">
+                                  <h2 class="mb-45 text-center">Контакты</h2>
+                                  <div class="icon-box-style-9 mb-20">
+                                      <div class="row">
+                                          <div class="col-xs-1">
+                                              <p><i class="fa fa-map-marker"></i></p>
+                                          </div>
+                                          <div class="col-xs-11 pl-0">
+                                              <p><strong>Адресс</strong></p>
+                                              <p>101 Карла Маркса, Днепр, Украина</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="icon-box-style-9 mb-20">
+                                      <div class="row">
+                                          <div class="col-xs-1">
+                                              <p><i class="fa fa-phone"></i></p>
+                                          </div>
+                                          <div class="col-xs-11 pl-0">
+                                              <p><strong>Телефон</strong></p>
+                                              <p>8 800 555 35 35 (или)</p>
+                                              <p>8 800 1488 69 12</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="icon-box-style-9 mb-20">
+                                      <div class="row">
+                                          <div class="col-xs-1">
+                                              <p><i class="fa fa-envelope"></i></p>
+                                          </div>
+                                          <div class="col-xs-11 pl-0">
+                                              <p><strong>Email</strong></p>
+                                              <p>BookSee@support.com</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+              <!--admin panel-->
+              <!--<div class="div-box get-in-touch mb">
+        <div class="container">
+            <div class="get-in-touch text-center">
+                <h2 class="mb-45">Get In Touch</h2>
+                <p class="mb-45"><i>Please don’t lorem ipsum dolor sit amet, tellus sit, convallis wisi id magna faucibus lobortis tempus quisque bibendum suspendisse. <br />I’ll try sapien lorem, lacus dictumst quis anim!</i></p>
+            </div>
+            <form class="get-in-touch-form">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            <input type="text" placeholder="Name" />
+                        </p>
+                        <p>
+                            <input type="text" placeholder="Email" />
+                        </p>
+                        <p>
+                            <input type="text" placeholder="Website" />
+                        </p>
+                        <p>
+                            <input type="text" placeholder="Subject" />
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            <textarea cols="30" rows="14" placeholder="Message"></textarea>
+                        </p>
+                    </div>
+                </div>
+                <p class="text-right"><a href="#" class="btn btn-17">post</a></p>
+            </form>
+        </div>
+    </div>-->
+
+
+
+              <div class="div-box">
+                  <footer id="yolo-footer-wrapper">
+                      <div class="yolo-footer-wrapper footer-3">
+                          <div class="footer-col">
+                              <h2><a href="index.html" class="logo"><img src="images/logo/logo-footer.png" alt="logo1" width="84" height="63" class="vc_single_image-img attachment-full" /></a></h2>
+                              <ul id="social-footer">
+                                  <!--<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+                              </ul>
+                              <p class="copyright">BookSee © Plexa 2017 Copyright, Все права защищены  <a href="#">BookSee</a></p>
+                          </div>
+                      </div>
+                  </footer>
+              </div>
+          </div>
+      </div>
+    <!-- .mv-site-->
+    
+    
+
+    <div class="popup-wrapper">
+    </div>
+    <!-- .popup-wrapper-->
+    <div class="click-back-top-body">
+      <button type="button" class="sn-btn sn-btn-style-17 sn-back-to-top fixed-right-bottom"><i class="btn-icon fa fa-angle-up"></i></button>
+    </div>
+
+    <!-- Vendor jQuery-->
+    <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="libs/animate/wow.min.js"></script>
+    <script type="text/javascript" src="libs/jquery.mmenu.all/jquery.mmenu.all.min.js"></script>
+    <script type="text/javascript" src="libs/countdown/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="libs/jquery-appear/jquery.appear.min.js"></script>
+    <script type="text/javascript" src="libs/jquery-countto/jquery.countTo.min.js"></script>
+    <script type="text/javascript" src="libs/direction/js/jquery.hoverdir.js"></script>
+    <script type="text/javascript" src="libs/direction/js/modernizr.custom.97074.js"></script>
+    <script type="text/javascript" src="libs/isotope/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="libs/isotope/fit-columns.js"></script>
+    <script type="text/javascript" src="libs/isotope/isotope-docs.min.js"></script>
+    <script type="text/javascript" src="libs/mansory/mansory.js"></script>
+    <script type="text/javascript" src="libs/prettyphoto-master/js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="libs/slick-sider/slick.min.js"></script>
+    <script type="text/javascript" src="libs/countdown-timer/js/jquery.final-countdown.min.js"></script>
+    <script type="text/javascript" src="libs/countdown-timer/js/kinetic.js"></script>
+    <script type="text/javascript" src="libs/owl.carousel.min/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </div>
