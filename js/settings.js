@@ -1,6 +1,6 @@
 ﻿"use strict"
 
-var app = angular.module('myApp', ['ngRoute']);
+var app = angular.module('myApp', ['ngRoute', 'oi.file']);
 
 app.config(function ($routeProvider,$locationProvider) {
 

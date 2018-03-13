@@ -1,4 +1,14 @@
 
 # HTID:4320983: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
 php_value display_errors 1
+
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} -s [OR]
+    RewriteCond %{REQUEST_FILENAME} -l [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^.*$ - [NC,L]
+
+    RewriteRule ^(.*) /index.html [NC,L]
+
+
 # DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:4320983:

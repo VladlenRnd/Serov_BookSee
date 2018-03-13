@@ -62,6 +62,8 @@
                                   <h2 class="text-center mb-45">Товаров в базе</h2>
                                   <p><strong>Всего</strong> {{Boocks.length}} шт.</p>
                                   <p ng-repeat="cat in Boocks|unique: 'Genre'"><strong>{{cat.Genre}}</strong> {{CountLenght(cat.Genre)}} шт.</p>
+                                  <button ng-click="ShowAllBooks()" class="btn btn-default">Все товары</button>
+
                               </div>
 
                               <div style="max-height:550px; overflow:auto" class="col-md-4 col-sm-4 text-center">
@@ -117,50 +119,160 @@
 
               <!--admin panel-->
               <div class="div-box get-in-touch mb">
-        <div class="container">
-            <div class="get-in-touch text-center">
-                <h2 class="mb-45">Товары</h2>
-                <p class="mb-45"><i>Добавить новый товар</i></p>
-            </div>
-            <form enctype="multipart/form-data" method="post" ng-submit="CreateProduct()"  class="get-in-touch-form">
-                <div class="row">
-                    <div class="col-md-3">
-                        <p>
-                            <input type="text" placeholder="Название" />
-                        </p>
-                        <p>
-                            <input type="text" placeholder="Автор" />
-                        </p>
-                        <p>
-                            <input type="number" min="0" max="99999" placeholder="Цена" />
-                        </p>
-                        <p>
-                            <input type="text" placeholder="Жанр" />
-                        </p>
-                        <p>
-                            <input type="number" value="0" max="99" min="0" placeholder="Скидка" />
-                        </p>
-                    </div>
-                    <div class="col-md-3">
-                        <p>
-                            <label><input type="checkbox" checked="checked" value="value"> Наличие на складе</label>
-                        </p>
-                        <p>
-                            <label> Обложка</label>
-                            <input accept="image/*" type="file">
-                        </p>
-                       
-                    </div>
-                    <div class="col-md-6">
-                        <p>
-                            <textarea cols="30" rows="14" placeholder="Описание книги"></textarea>
-                        </p>
-                    </div>
-                </div>
-                <p class="text-right"><button type="submit" class="btn btn-17">Добавить товар</button></p>
-            </form>
-        </div>
-    </div>
+                  <div class="container">
+                      <div class="get-in-touch text-center">
+                          <h2 class="mb-45">Товары</h2>
+                          <p class="mb-45"><i>Добавить новый товар</i></p>
+                      </div>
+                      <form ng-submit="CreateProduct()" class="get-in-touch-form">
+                          <div class="row">
+                              <div class="col-md-3">
+                                  <p>
+                                      <label>Название</label>
+                                      <input required="required" ng-model="NewProduct.name" type="text" placeholder="Название" />
+                                  </p>
+                                  <p>
+                                      <label>Автор</label>
+                                      <input required="required" ng-model="NewProduct.auctor" type="text" placeholder="Автор" />
+                                  </p>
+                                  <p>
+                                      <label>Жанр</label>
+                                      <input required="required" ng-model="NewProduct.genre" type="text" placeholder="Жанр" />
+                                  </p>
+                                  <p>
+                                      <label>Цена</label>
+                                      <input required="required" ng-model="NewProduct.prise" type="number" min="1" max="99999" placeholder="Цена" />
+                                  </p>
+                                  <p>
+                                      <label>Скидка в % от 0 до 99</label>
+                                      <input required="required" ng-model="NewProduct.discont" type="number" value="0" max="99" min="0" placeholder="Скидка" />
+                                  </p>
+                              </div>
+                              <div class="col-md-3">
+                                  <p>
+                                      <label><input type="checkbox" ng-model="NewProduct.availability" checked="checked" value="value"> Наличие на складе</label>
+                                  </p>
+                                  <p>
+                                      <label> Обложка</label>
+                                      <input accept="image/*" type="file">
+                                  </p>
+
+                                  <p>
+                                      <label>Цена {{NewProduct.prise}}₴ без скидки</label><br />
+                                      <label ng-show="NewProduct.discont != 0">Цена {{GetCurrentPrice(NewProduct.prise,NewProduct.discont)}}₴ со скидкой</label>
+
+                                  </p>
+
+                              </div>
+                              <div class="col-md-6">
+                                  <p>
+                                      <label>Описание книги</label>
+                                      <textarea required="required" cols="30" ng-model="NewProduct.description" rows="14" placeholder="Описание книги"></textarea>
+                                  </p>
+                              </div>
+                          </div>
+                          <p class="text-right"><button type="submit" class="btn btn-17">Добавить товар</button></p>
+                      </form>
+                  </div>
+              </div>
+
+
+              <!-- Modal -->
+              <!-- Modal -->
+              <div class="modal fade" id="AllProductList" role="dialog">
+                  <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Товары в базе</h4>
+                          </div>
+                          <div style="overflow:auto" class="modal-body">
+
+                              <div style="padding-left:15px;">
+                                  <strong style="padding-right:5px;">Поиск</strong>
+                                  <input ng-model="InputSearch" type="text" placeholder="Поиск..." />
+                                  <select ng-model="SelectSearch">
+                                      <option value="Name">Название</option>
+                                      <option value="Auctor">Автор</option>
+                                      <option value="Genre">Жанр</option>
+                                      <option value="Prise">Цена</option>
+                                      <option value="Discount">Скидка</option>
+                                  </select>
+                              </div>
+
+
+                              <table class="table table-hover">
+                                  <thead>
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Обложка</th>
+                                          <th>Название</th>
+                                          <th>Автор</th>
+                                          <th>Жанр</th>
+                                          <th>Цена</th>
+                                          <th>Скидка</th>
+                                          <th>Наличее на складе</th>
+                                          <th>Описание</th>
+                                          <th>Изменить</th>
+                                          <th>Удалить</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr ng-repeat="boock in Boocks| filter:FilterN">
+                                          <td scope="row">{{$index+1}}</td>
+                                          <td><img ng-src="{{boock.Img === '' ? 'images/ProductImg/noImgBook.jpg' : boock.Img}}" alt="product1" width="50" height="70" class="attachment-shop_catalog size-shop_catalog wp-post-image" /></td>
+                                          <td>{{boock.Name}}</td>
+                                          <td>{{boock.Auctor}}</td>
+                                          <td>{{boock.Genre}}</td>
+                                          <td>{{boock.Prise}}</td>
+                                          <td>{{boock.Discount}}</td>
+                                          <td>{{boock.Availability === '1' ? "Да":"Нет"}}</td>
+                                          <td><div style="overflow:auto; height:150px!important;">{{boock.Description}}</div></td>
+                                          <td>
+                                              <button ng-click="DeletePromo('123')" type="button" class="btn btn-default btn-sm">
+                                                  <span class="	fa fa-pencil-square-o"></span> Изменить
+                                              </button>
+                                          </td>
+                                          <td>
+                                              <button ng-click="DeleteProduct(boock.Id)" type="button" class="btn btn-default btn-sm">
+                                                  <span class="	fa fa-remove"></span> Удалить
+                                              </button>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+
+              <!-- Modal -->
+              <div class="modal fade" id="AddFinish" role="dialog">
+                  <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Товары в базе</h4>
+                          </div>
+                          <div style="overflow:auto" class="modal-body">
+                              <h2>Продукт добавлен!</h2>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+
+
+
 
 
 
