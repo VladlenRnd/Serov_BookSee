@@ -99,6 +99,11 @@ app.controller('AdminCtrl', function ($scope, $location, $http) {
     $scope.GoTo = function (path) {
         $location.path(path);
     }
+    $scope.uplFile = null;
+
+    $scope.uploadFile = function (files) {
+        $scope.uplFile = files;
+    };
 
 
     $scope.NewProduct = {
@@ -114,40 +119,62 @@ app.controller('AdminCtrl', function ($scope, $location, $http) {
     }
 
 
-    $scope.CreateProduct = function()
-    {
+    $scope.CreateProduct = function () {
 
         console.log($scope.NewProduct);
 
-        var req = {
-            method: 'POST',
-            url: SetProductPath,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: $scope.NewProduct
-        }
+
+            var fd = new FormData();
+            //Take the first selected file
+            if ($scope.uplFile != null)
+                fd.append("file", $scope.uplFile[0]);
+
+            let jso = JSON.stringify($scope.NewProduct);
+            fd.append("MyInfo", jso);
+
+            $http.post(SetProductPath, fd, {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': "application/json",
+                    'Content-Type': undefined,
+                    'Access-Control-Allow-Origin': '*'
+                },
+                transformRequest: angular.identity
+            }).then(function (data) {
+                console.log(data);
+                $("#AddFinish").modal();
+                setTimeout(function () { $("#AddFinish").modal('hide'); }, 1500);
+
+                $http.get(GetProductPath).then(function (response) {
+                    AllProduct = $scope.Boocks = response.data;
+                    setTimeout(function () {
+
+                        INIT_GRID();
+
+                    }, 100)
+                });
 
 
-        $http(req).then(function (data) {
-            console.log(data);
-            $("#AddFinish").modal();
-            setTimeout(function () { $("#AddFinish").modal('hide'); }, 1500);
-
-            $http.get(GetProductPath).then(function (response) {
-                AllProduct = $scope.Boocks = response.data;
-                setTimeout(function () {
-
-                    INIT_GRID();
-
-                }, 100)
+            }, function (error) {
+                console.log(error);
             });
 
 
-        }, function (error) {
-            console.log(error);
-            });
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     $scope.SelectSearch = "Name";
     $scope.InputSearch = "";
