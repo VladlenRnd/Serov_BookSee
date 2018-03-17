@@ -202,7 +202,7 @@ app.controller('AdminCtrl', function ($scope, $location, $http) {
             transformRequest: angular.identity
         }).then(function (data) {
             console.log(data);
-
+            $("#ChangeModal").modal("hide");
             $http.get(GetProductPath).then(function (response) {
                 AllProduct = $scope.Boocks = response.data;
                 setTimeout(function () {
