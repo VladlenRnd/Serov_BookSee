@@ -119,6 +119,7 @@ app.controller('AdminCtrl', function ($scope, $location, $http) {
     }
 
 
+
     $scope.CreateProduct = function () {
 
         console.log($scope.NewProduct);
@@ -163,8 +164,60 @@ app.controller('AdminCtrl', function ($scope, $location, $http) {
 
     }
 
+    $scope.PrCha;
+
+    $scope.Change = function (id)
+    {
+        $("#ChangeModal").modal();
+
+        for (var i = 0; i < $scope.Boocks.length; i++) {
+
+            if ($scope.Boocks[i].Id === id) {
+                $scope.PrCha = $scope.Boocks[i];
+                $scope.PrCha.Prise = parseInt($scope.PrCha.Prise);
+                $scope.PrCha.Discount = parseInt($scope.PrCha.Discount);
+                $scope.PrCha.Id = parseInt($scope.PrCha.Id);
+                $scope.PrCha.Availability = parseInt($scope.PrCha.Availability);
+            }
+        }
 
 
+
+    }
+
+    $scope.CahngeProduct = function (id)
+    {
+        let fd = new FormData();
+
+        let jso = JSON.stringify($scope.PrCha);
+        fd.append("Update", jso);
+
+        $http.post(UpdatePath, fd, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': "application/json",
+                'Content-Type': undefined,
+                'Access-Control-Allow-Origin': '*'
+            },
+            transformRequest: angular.identity
+        }).then(function (data) {
+            console.log(data);
+
+            $http.get(GetProductPath).then(function (response) {
+                AllProduct = $scope.Boocks = response.data;
+                setTimeout(function () {
+
+                    INIT_GRID();
+
+                }, 100)
+            });
+
+
+        }, function (error) {
+            console.log(error);
+        });
+
+    }
 
 
 

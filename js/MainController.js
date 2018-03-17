@@ -5,7 +5,7 @@ var AllProduct = null;
 var GetProductPath = "https://serov.000webhostapp.com/php/GetProduct.php";
 var SetProductPath = "https://serov.000webhostapp.com/php/SetProduct.php";
 var DeletePath = "https://serov.000webhostapp.com/php/Delete.php";
-var UploadPath = "https://serov.000webhostapp.com/php/UploadImg.php";
+var UpdatePath = "https://serov.000webhostapp.com/php/Update.php";
 
 
 
